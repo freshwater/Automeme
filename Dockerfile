@@ -4,16 +4,12 @@ FROM ubuntu:latest
 
 RUN apt-get update --fix-missing
 
-RUN apt-get --yes install curl
-RUN apt-get install --yes vim
+RUN apt-get install --yes curl
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x  | bash -
-RUN apt-get --yes install nodejs
+RUN apt-get install --yes nodejs
 
 RUN npm install puppeteer
-RUN npm install puppeteer-to-istanbul
-RUN npm install nyc --global
-
 RUN npm install sqlite3
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gconf-service \
@@ -60,8 +56,8 @@ RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd
 RUN apt-get install --yes ./google-chrome-stable_current_amd64.deb
 RUN rm google-chrome-stable_current_amd64.deb 
 
-COPY script.js .
+COPY scan.js .
 
 RUN mkdir /workfolder
 
-CMD ["/bin/bash", "-c", "node script.js"]
+CMD ["/bin/bash", "-c", "node scan.js"]

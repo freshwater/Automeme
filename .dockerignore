@@ -1,0 +1,6 @@
+
+data/
+*.sqlite
+*.ipynb
+.ipynb_checkpoints/
+
