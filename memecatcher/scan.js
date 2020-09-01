@@ -4,16 +4,19 @@ const sqlite3 = require('sqlite3');
 const crypto = require('crypto');
 const fs = require('fs').promises;
 
+
+/* ------ */
+
 let [_n, _s, ...keyValues] = process.argv;
 
 let args = {
-    channel: null,
+    channelName: null,
     storeCommentImages: 'false',
     storeCommentHtmlFragments: 'false',
     recordSqlite: 'true',
     dataFolder: 'data',
     sqliteFileName: 'database.sqlite',
-    scanTimeSeconds: 7*24*60*60,
+    scanTimeSeconds: '7*24*60*60',
     viewportWidth: 1200,
     viewportHeight: 1080,
     deviceScaleFactor: 1
@@ -23,22 +26,29 @@ for (let i = 0; i < keyValues.length; i += 2) {
     args[keyValues[i].substring(2)] = keyValues[i+1];
 }
 
-let {channel, storeCommentImages, storeCommentHtmlFragments, recordSqlite,
+let {channelName, storeCommentImages, storeCommentHtmlFragments, recordSqlite,
      dataFolder, sqliteFileName, scanTimeSeconds, viewportWidth, viewportHeight, deviceScaleFactor} = args;
 
 storeCommentImages = 'true' === storeCommentImages;
 storeCommentHtmlFragments = 'true' === storeCommentHtmlFragments;
 recordSqlite = 'true' === recordSqlite;
-// sqliteFileName = sqliteFileName || `${channel}.sqlite`;
-scanTimeSeconds = parseInt(scanTimeSeconds, 10);
+
+scanTimeSeconds = eval(scanTimeSeconds);
 viewportWidth = parseInt(viewportWidth, 10);
 viewportHeight = parseInt(viewportHeight, 10);
 deviceScaleFactor = parseInt(deviceScaleFactor, 10);
 
-console.warn({channel, storeCommentImages, storeCommentHtmlFragments, recordSqlite,
+console.warn({channelName, storeCommentImages, storeCommentHtmlFragments, recordSqlite,
               dataFolder, sqliteFileName, scanTimeSeconds, viewportWidth, viewportHeight, deviceScaleFactor});
 
 dataFolder = '/workfolder/' + dataFolder;
+
+if (!channelName) {
+    var RED='\033[0;31m';
+    var NC='\033[0m';
+    console.log(`${RED}required: --channelName <channel>${NC}`)
+    process.exit();
+}
 
 
 /* ------ */
@@ -85,7 +95,7 @@ dataFolder = '/workfolder/' + dataFolder;
         deviceScaleFactor: deviceScaleFactor
     });
 
-    await page.goto(`https://www.twitch.tv/${channel}`);
+    await page.goto(`https://www.twitch.tv/${channelName}`);
     await page.waitFor(2000);
 
     await page.exposeFunction('log', console.log);
@@ -161,9 +171,9 @@ dataFolder = '/workfolder/' + dataFolder;
 
                 if (recordSqlite) {
                     rowInsert({time: new Date().toISOString(),
-                            topic, channel, streamTitle, viewerCount, username, messageText,
-                            messageHTML: storeCommentHtmlFragments ? comment.outerHTML : null,
-                            imageId: storeCommentImages ? snapshotId : null});
+                               topic, channel, streamTitle, viewerCount, username, messageText,
+                               messageHTML: storeCommentHtmlFragments ? comment.outerHTML : null,
+                               imageId: storeCommentImages ? snapshotId : null});
                 }
             }
         });

@@ -5,7 +5,7 @@ Memecatcher is a utility for observing and saving Twitch chat to sqlite files. T
 
 ## Motivation
 
-Twitch chat was invented in the early days of the internet. Over the years, its importance has grown. It is a misunderstood medium, an ephemeral hivemind, an enlightenend condensate of wills and frustrations. I believe there is a deep beauty to Twitch chat, one that can only be seen through the analytically clairvoyant mind's eye of deep artificial machine general learning intelligence IoT.
+Twitch chat was invented in the early days of the internet. Over the years, its importance has grown. Human society has a lot to learn from Twitch chat. A verdant and bountiful source of wisdom, a misunderstood medium, an ephemeral hivemind, an enlightenend condensate of wills and frustrations. I believe there is a deep beauty to Twitch chat, one that can only be seen through the analytically clairvoyant mind's eye of deep artificial machine general learning intelligence IoT.
 
 ## Use
 
@@ -28,7 +28,7 @@ Images are stored in `data/images`. On channels with a high power level, chat ma
 
 ## Other examples
 
-If you want to just look at the chat in the comfort of your terminal:
+If you want to just look at the chat from the comfort of your terminal:
 
     ./scan.sh --channelName <channel> --recordSqlite false
 
@@ -38,12 +38,12 @@ Write to a text file for line-based logging:
 
 Observe 20 seconds of comments:
 
-    !./scan.sh --channel <channel> --scanTimeSeconds 20 --recordSqlite false
+    ./scan.sh --channel <channel> --scanTimeSeconds 20 --recordSqlite false
 
 
 Store retina DPI images:
 
-    ./scan.sh --channelName <channel> --deviceScaleFactor 2
+    ./scan.sh --channelName <channel> --storeCommentImages true --deviceScaleFactor 2
 
 Write to a specific sqlite file:
 
