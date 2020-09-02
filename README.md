@@ -5,7 +5,7 @@ Memecatcher is a utility for observing and saving Twitch chat to sqlite files. T
 
 ## Motivation
 
-Twitch chat was invented in the early days of the internet. Over the years, its importance has grown. Human society has a lot to learn from Twitch chat. A verdant and bountiful source of wisdom, a misunderstood medium, an ephemeral hivemind, an enlightenend condensate of wills and frustrations. I believe there is a deep beauty to Twitch chat, one that can only be seen through the analytically clairvoyant mind's eye of deep artificial machine general learning intelligence IoT.
+Twitch chat was invented in the early days of the internet. Over the years, its importance has grown. Human society has a lot to learn from Twitch chat. It is a verdant and bountiful source of wisdom, a misunderstood medium, an ephemeral hivemind, an enlightenend condensate of wills and frustrations. I believe there is a deep beauty to Twitch chat, one that can only be seen through the analytically clairvoyant mind's eye of deep artificial machine general learning intelligence. IoT.
 
 ## Use
 
